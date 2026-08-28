@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import './css/sidebar.css'
 
 const Sidebar = () => {
@@ -7,7 +8,7 @@ const Sidebar = () => {
         <h2>My App</h2>
 
         <nav>
-            <button><a href="#">Dashboard</a></button>
+           <Link to="/dashboard"><button>Dashboard</button></Link> 
             <button><a href="#">People</a></button>
             <button><a href="#">Transactions</a></button>
             <button><a href="#">Reports</a></button>

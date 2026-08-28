@@ -1,8 +1,18 @@
 import React from 'react'
+import Sidebar from "./Sidebar";
 
 const Addtransaction = () => {
   return (
-    <div>Addtransaction</div>
+    <>
+    <div className='add-transaction'>
+        <Sidebar />
+    <main>
+        <div>Add Transaction</div>
+    </main>
+
+    </div>
+
+    </>
   )
 }
 

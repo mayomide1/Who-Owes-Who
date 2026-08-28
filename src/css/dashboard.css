@@ -1,12 +1,8 @@
-.dashboard{
-    border: 2px solid red;
-    display: flex;
-     height: 100vh;
-}
 main{
     border: 2px solid green;
     width: 85%;
     gap: 20px;
+    padding: 10px;
 }
 
 .header{
@@ -47,3 +43,106 @@ main{
     font-size: 20px;
 }
 
+.summary-cards{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.summary-card{
+    width: 25%;
+    border: 2px solid red;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.dashboard-body{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.dashboard-body .people{
+    border: 2px solid red;
+    width: 75%;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.people .person-card{
+    border-top: 2px solid #F3F4F6;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px ;
+}
+
+.people .person-card .person-card-left,
+.people .person-card .person-card-right{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.people .person-card .person-card-left .person-details{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dashboard-body .histories{
+    border: 2px solid green;
+    width: 20%;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.histories .head,
+.people .head{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.histories .head button,
+.people .head button{
+    border: none;
+    background-color: #fff;
+    color: #6366F1;
+    cursor: pointer;
+}
+
+.histories .head button:hover,
+.people .head button:hover{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.dashboard-body .histories .history{
+    border-top: 2px solid #F3F4F6;
+    padding: 5px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.img-placeholder{
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    background-color: #F3F4F6;
+}
+
+.history-info{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.history-info .day{
+    font-weight: 600;
+}
