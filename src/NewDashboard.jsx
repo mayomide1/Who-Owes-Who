@@ -16,7 +16,7 @@ function savePerson(){
         alert("Enter a Name")
         return
     }
-    localStorage.setItem("name", JSON.stringify(fullName))
+    localStorage.setItem("name", JSON.stringify(phone))
     console.log(fullName)
     console.log(phone)
     console.log(notes)
