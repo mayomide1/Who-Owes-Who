@@ -8,35 +8,48 @@ const NewDashboard = () => {
  const [phone, setPhone] = useState("")
  const [notes, setNotes] = useState("")
 
-// JSON.parse(localStorage.getItem('name'))
-
+const savedPeople = JSON.parse(localStorage.getItem("person")) || [];
 
 function savePerson(){
     if (fullName === ""){
         alert("Enter a Name")
         return
     }
-    localStorage.setItem("name", JSON.stringify(phone))
-    console.log(fullName)
-    console.log(phone)
-    console.log(notes)
+
+    const personData = {
+        name: fullName,
+        phone: phone,
+        notes: notes,
+    }
+
+    savedPeople.push(personData)
+
+    localStorage.setItem("person", JSON.stringify(savedPeople))
+    console.log(savedPeople)
 }
 
 
   return (
     <>
-        <button onClick={() => setIsModalOpen(isModalOpen)}>Add Transaction</button>
+    <div>
+        <button onClick={() => setIsModalOpen(!isModalOpen)}>Add Transaction</button>
         
     {isModalOpen && 
         <div>
-            <h1>This modal is opened</h1>
-            <button onClick={() => setIsAddNewPersonOpen(isAddNewPersonOpen)}>Add New Person</button>
+        {savedPeople.map((person,index)=> {
+            return(
+                <div key={index}>
+                    <p>{person.name}</p>
+                    <p>{person.phone}</p>
+                </div>
+            )
+        })}
+            <button onClick={() => setIsAddNewPersonOpen(!isAddNewPersonOpen)}>Add New Person</button>
         </div>
     }
 
     {isAddNewPersonOpen &&
     <>
-        <h2>Add New Person</h2>
         <label htmlFor="fullname">Full Name</label>
         <input 
             type="text" 
@@ -58,7 +71,7 @@ function savePerson(){
         <button onClick={savePerson}>Save Person</button>
     </>
     }
-    
+    </div>
     </>
   )
 }
