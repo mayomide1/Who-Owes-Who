@@ -1,7 +1,14 @@
 .sidebar{
-    border: 2px solid red;
     width: 15%;
+    background-color: #111827;
    
+}
+
+.sidebar h2{
+    margin-top: 50px;
+    text-align: center;
+    color: #fff;
+
 }
 
 nav{
@@ -12,7 +19,37 @@ nav{
 }
 
 nav button{
-    border: 2px solid black;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    font-size: 15px;
+    padding: 10px;
     height: 40px;
     border-radius: 10px;
+    background-color: #111827;
+    color: #fff;
+    cursor: pointer;
+}
+
+nav button:hover,
+nav button.active{
+    background-color: #6366F1;
+}
+
+nav
+
+.dashboard-btn{
+    margin-top: 50px;
+}
+
+.logout{
+    margin-top: 200px;
+}
+
+@media (max-width: 768px) {
+    .sidebar{
+        display: none;
+    }
 }

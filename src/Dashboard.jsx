@@ -1,20 +1,20 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import {user} from './server.js'
-
+import React, { useState } from 'react'
+import {Link, useNavigate} from 'react-router-dom'
+import { whoOwes } from './server';
 import { FaBell } from "react-icons/fa6";
 import { IoMdArrowDropright } from "react-icons/io";
-import { FaUserAlt } from "react-icons/fa";
-import { MdKeyboardArrowDown } from "react-icons/md";
+import { FaUserAlt, FaArrowUp , FaArrowDown } from "react-icons/fa";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 
 import Sidebar from './Sidebar';
 import './css/dashboard.css'
 
 const dashboard = () => {
+    const [isarrowOpen, setisArrowOpen] = useState("false")
+    const loggedUser = JSON.parse(localStorage.getItem('active_user')) || null
     const savedPeople = JSON.parse(localStorage.getItem("person")) || [];
-    console.log(savedPeople)
-    console.log(user)
 
+    const navigate = useNavigate()
   return (
    <>
     <div className="dashboard">
@@ -22,34 +22,35 @@ const dashboard = () => {
     <main>
     <div className="header">
         <div className='header-left'>
-            <h2>Hello {user.firstName}</h2>
-            <p>Here's what's happening with your money</p>
+            <h2>Hello, {loggedUser.firstName}</h2>
+            <p className='summary'>Here's what's happening with your money</p>
         </div>
         
         <div className='header-right'>
             <button><FaBell /></button>
         <div className='header-right-user'>
-            <button><FaUserAlt/></button>
-            <h2>{user.firstName} {user.surname}</h2>
-            <button><MdKeyboardArrowDown /></button>
+            <div><FaUserAlt/></div>
+            <h4>{loggedUser.firstName} {loggedUser.surname}</h4>
+            <div onClick={() => setisArrowOpen(!isarrowOpen)}>{isarrowOpen ? <MdKeyboardArrowDown /> : <MdKeyboardArrowUp/> }</div>
         </div>
         </div>
     </div>
 
     <div className='summary-cards'>
         <div className="summary-card">
-            <h2>People Owe Me</h2>
-            <p>35,000</p>
+            <div className='summary-card-header'>
+                <p>People Owe Me</p>
+                <div><FaArrowUp/></div>
+            </div>
+            <h1>₦35,000</h1>
             <p>Total from 3 people</p>
         </div>
         <div className="summary-card">
-            <h2>I owe people</h2>
-            <p>12,500</p>
-            <p>Total from 3 people</p>
-        </div>
-        <div className="summary-card">
-            <h2>Net Balance</h2>
-            <p>22,500</p>
+            <div className='summary-card-header'>
+                <p>I owe people</p>
+                <div><FaArrowDown/></div>
+            </div>
+            <h1>₦12,500</h1>
             <p>Total from 3 people</p>
         </div>
     </div>
@@ -58,9 +59,9 @@ const dashboard = () => {
     <div className='people'>
         <div className='head'>
         <h3>People</h3>
-        <button>View All</button>
+        <button onClick={() => navigate("/people")}>View All</button>
         </div>
-            {savedPeople.map((person, index) => {
+            {whoOwes.slice(0,5).map((person, index) => {
                 return(
                     <div key={index} className='person-card'>
                         <div className='person-card-left'>
@@ -69,11 +70,15 @@ const dashboard = () => {
                             </div>
                             <div className='person-details'>
                                 <h3 className='person-name'>{person.name}</h3>
-                                <p className='person-status'>Owes you</p>
+                                <p className="person-status"
+                                style={{color: person.category === "owes you" ? "#0B6623" : "#FF0000"}}
+                                >{person.category}</p>
                             </div>
                         </div>
                         <div className='person-card-right'>
-                            <p className='person-amount'>15,000</p>
+                            <h3 className='person-amount'
+                            style={{color: person.category === "owes you" ? "#0B6623" : "#FF0000"}}
+                            >₦{person.amount}</h3>
                             <button className='person-arrow-btn'>
                                 <IoMdArrowDropright/>
                             </button>

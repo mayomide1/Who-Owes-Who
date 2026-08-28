@@ -15,3 +15,62 @@ export const user = [
         password:"password",
     }
 ]
+
+export const whoOwes = [
+    {
+        name: "Emmanuel",
+        phone: "08024454940",
+        notes:"",
+        category:"you owe",
+        amount: "5000",
+    },
+    {
+        name: "Mum",
+        phone: "08024454940",
+        notes:"",
+        category:"owes you",
+        amount: "5000",
+    },
+    {
+        name: "Esther",
+        phone: "08024454940",
+        notes:"",
+        category:"owes you",
+        amount: "5000",
+    },
+    {
+        name: "Fikayomi",
+        phone: "08024454940",
+        notes:"",
+        category:"owes you",
+        amount: "5000",
+    },
+    {
+        name: "Xexes",
+        phone: "08024454940",
+        notes:"",
+        category:"owes you",
+        amount: "5000",
+    },
+    {
+        name: "Esther",
+        phone: "08024454940",
+        notes:"",
+        category:"owes you",
+        amount: "5000",
+    },
+    {
+        name: "Fikayomi",
+        phone: "08024454940",
+        notes:"",
+        category:"owes you",
+        amount: "5000",
+    },
+    {
+        name: "Xexes",
+        phone: "08024454940",
+        notes:"",
+        category:"owes you",
+        amount: "5000",
+    },
+]

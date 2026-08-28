@@ -1,19 +1,21 @@
 main{
-    border: 2px solid green;
     width: 85%;
     gap: 20px;
     padding: 10px;
+    overflow-y: hidden;
 }
 
 .header{
-    border: 2px solid red;
     display: flex;
     justify-content: space-between;
     padding: 10px;
 }
 
+.header .summary{
+    margin-top: 10px;
+}
+
 .header .header-right{
-    border: 2px solid green;
     display: flex;
     gap: 15px;
     align-items: center;
@@ -30,43 +32,121 @@ main{
     cursor: pointer;
 }
 
-.header .header-right button:hover{
+.header .header-right button:hover,
+.header .header-right .header-right-user div:nth-of-type(2):hover{
     background-color: #F3F4F6;
 }
 
 .header .header-right .header-right-user{
     display: flex;
     align-items: center;
+    gap: 2px;
 }
 
-.header .header-right .header-right-user button{
+.header .header-right .header-right-user div{
+    border: none;
+    background-color: #fff;
+    width: 50px;
+    height: 50px;
     font-size: 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.summary-cards{
+.header .header-right .header-right-user div:nth-of-type(2){
+    width: 40px;
+    height: 40px;
+}
+
+ .summary-cards{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+ .summary-cards .summary-card{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 25%;
+    border: 2px solid #F3F4F6;
+    box-shadow: 2px 2px 2px 2px #F3F4F6;
+    padding: 20px 10px;
+    border-radius: 10px;
+}
+
+ .summary-cards .summary-card h1{
+    margin-top: -20px;
+ }
+
+  .summary-cards .summary-card p:last-child{
+    color: #687280;
+    font-weight: 600;
+    margin-top: -10px;
+  }
+
+ .summary-cards .summary-card .summary-card-header{
     display: flex;
     justify-content: space-between;
-    padding: 20px;
-    margin-top: 30px;
 }
 
-.summary-card{
-    width: 25%;
-    border: 2px solid red;
-    padding: 10px;
-    border-radius: 10px;
+.summary-card .summary-card-header div{
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.summary-cards .summary-card:first-child .summary-card-header p{
+    color: #006400 ;
+    font-weight: 700;
+}
+
+.summary-cards .summary-card:first-child .summary-card-header div{
+    background-color: #F0FFF0 ;
+    color: #0B6623 ;
+}
+
+.summary-cards .summary-card:first-child h1{
+    color: #006400 ;
+    margin-top: -20px;
+    font-weight: 700;
+}
+
+.summary-cards .summary-card:last-child .summary-card-header p{
+    color: #FF0000  ;
+    font-weight: 700;
+}
+
+.summary-cards .summary-card:last-child .summary-card-header div{
+    background-color: #FF8A8A ;
+    color: #FF0000  ;
+}
+
+.summary-cards .summary-card:last-child h1{
+    color: #FF0000  ;
+    margin-top: -20px;
+    font-weight: 700;
 }
 
 .dashboard-body{
     display: flex;
     justify-content: space-between;
+    gap: 20px;
     padding: 20px;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 .dashboard-body .people{
     border: 2px solid red;
-    width: 75%;
+    width: 70%;
     border-radius: 10px;
     padding: 10px;
 }
@@ -88,12 +168,32 @@ main{
 .people .person-card .person-card-left .person-details{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
+}
+
+.people .person-card .person-card-left .person-details p{
+    font-weight: 600;
+}
+
+.dashboard-body .people .add-btn{
+    border: none;
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    margin-top: 10px;
+    background-color: #818CF8;
+    color: #FFF;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.dashboard-body .people .add-btn:hover{
+    background-color: #6366F1;
 }
 
 .dashboard-body .histories{
     border: 2px solid green;
-    width: 20%;
+    width: 25%;
     border-radius: 10px;
     padding: 10px;
     display: flex;
@@ -145,4 +245,24 @@ main{
 
 .history-info .day{
     font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    main{
+        width: 100%;
+        overflow-y: scroll;
+    }
+
+    .summary-cards .summary-card{
+        width: 40%;
+    }
+
+    .dashboard-body{
+        flex-wrap: wrap;
+    }
+
+    .dashboard-body .people,
+    .dashboard-body .histories{
+        width: 100%;
+    }
 }

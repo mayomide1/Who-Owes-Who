@@ -1,12 +1,12 @@
 import React from 'react'
 import Sidebar from './Sidebar';
 
-const Settings = () => {
+const People = () => {
   return (
     <>
-    <Sidebar />
+      <Sidebar />
     </>
   )
 }
 
-export default Settings
+export default People

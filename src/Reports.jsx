@@ -1,12 +1,11 @@
 import React from 'react'
 import Sidebar from './Sidebar';
-
-const Settings = () => {
+const Reports = () => {
   return (
     <>
-    <Sidebar />
+        <Sidebar />
     </>
   )
 }
 
-export default Settings
+export default Reports
