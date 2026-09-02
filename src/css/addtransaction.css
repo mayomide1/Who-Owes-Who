@@ -139,7 +139,7 @@
     color: #666;
 }
 
-.person-name {
+.modal .person-name {
     flex: 1;
     font-size: 16px;
     color: #1a1a1a;

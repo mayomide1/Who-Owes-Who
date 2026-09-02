@@ -7,7 +7,7 @@ import { IoSettings, IoLogOut  } from "react-icons/io5";
 import { GrTransaction } from "react-icons/gr";
 import { TbReportSearch } from "react-icons/tb";
 
-const Sidebar = ({isSideBarOpen}) => {
+const Sidebar = ({isSideBarOpen, onClose}) => {
     const [activeButton, setActiveButton] = useState("dashboard")
     const navigate = useNavigate()
 

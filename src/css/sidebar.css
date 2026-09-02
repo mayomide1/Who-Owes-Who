@@ -9,6 +9,17 @@
   color: #fff;
 }
 
+.modal-over-lay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    cursor: pointer;
+}
+
 nav {
   display: flex;
   flex-direction: column;
@@ -41,7 +52,7 @@ nav .dashboard-btn {
 }
 
 .logout {
-  margin-top: 170px;
+  margin-top: 200px;
 }
 
 @media (max-width: 768px) {

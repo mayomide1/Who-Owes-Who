@@ -112,7 +112,6 @@ main{
     display: flex;
     flex-direction: column;
     gap: 5px;
-    border: 2px solid red;
 }
 
 .dashboard-body .people .person-card .person-card-left .person-details p{

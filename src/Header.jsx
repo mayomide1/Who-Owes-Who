@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
@@ -11,10 +11,14 @@ import "./css/header.css";
 import "./css/sidebar.css";
 
 const Header = () => {
-  const [isarrowOpen, setisArrowOpen] = useState("false");
+  const [isarrowOpen, setisArrowOpen] = useState(false);
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
   const loggedUser = JSON.parse(localStorage.getItem("active_user")) || null;
-  
+
+  function closeSidebar() {
+    setIsSideBarOpen(false);
+  }
+
   return (
     <>
       <div className="header">
@@ -46,8 +50,16 @@ const Header = () => {
         </div>
       </div>
 
+      <button
+        onClick={() => {
+          closeSidebar;
+        }}
+      ></button>
+
       {isSideBarOpen && (
-        <Sidebar isSideBarOpen={isSideBarOpen}/>
+        <div className="modal-over-lay" onClick={closeSidebar}>
+          <Sidebar isSideBarOpen={isSideBarOpen} />
+        </div>
       )}
     </>
   );
