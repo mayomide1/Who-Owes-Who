@@ -2,8 +2,6 @@ import React from 'react'
 import {Routes, Route} from "react-router-dom"
 import Sidebar from "./Sidebar";
 import Dashboard from "./Dashboard";
-import NewDashboard from './NewDashboard';
-import Addtransaction from './Addtransaction';
 import Login from './Login';
 import People from './People';
 import Transactions from './Transactions';
@@ -20,7 +18,6 @@ const App = () => {
         <Route path="/transactions" element={<Transactions />} />
         <Route path="/reports" element={<Reports />} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="/add-transaction" element={<Addtransaction />} />
       </Routes>
     </>
   )

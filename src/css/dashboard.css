@@ -5,62 +5,6 @@ main{
     overflow-y: hidden;
 }
 
-.header{
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-}
-
-.header .summary{
-    margin-top: 10px;
-}
-
-.header .header-right{
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    padding: 5px;
-}
-
-.header .header-right button{
-    border: none;
-    background-color: #fff;
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
-    border-radius: 50px;
-    cursor: pointer;
-}
-
-.header .header-right button:hover,
-.header .header-right .header-right-user div:nth-of-type(2):hover{
-    background-color: #F3F4F6;
-}
-
-.header .header-right .header-right-user{
-    display: flex;
-    align-items: center;
-    gap: 2px;
-}
-
-.header .header-right .header-right-user div{
-    border: none;
-    background-color: #fff;
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
-    border-radius: 50px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.header .header-right .header-right-user div:nth-of-type(2){
-    width: 40px;
-    height: 40px;
-}
-
  .summary-cards{
     display: flex;
     justify-content: space-evenly;
@@ -72,9 +16,8 @@ main{
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 25%;
+    width: 30%;
     border: 2px solid #F3F4F6;
-    box-shadow: 2px 2px 2px 2px #F3F4F6;
     padding: 20px 10px;
     border-radius: 10px;
 }
@@ -111,7 +54,7 @@ main{
 
 .summary-cards .summary-card:first-child .summary-card-header div{
     background-color: #F0FFF0 ;
-    color: #0B6623 ;
+    color: #006400 ;
 }
 
 .summary-cards .summary-card:first-child h1{
@@ -145,40 +88,41 @@ main{
 }
 
 .dashboard-body .people{
-    border: 2px solid red;
+    border: 2px solid #F3F4F6;
     width: 70%;
     border-radius: 10px;
     padding: 10px;
 }
 
-.people .person-card{
+.dashboard-body .people .person-card{
     border-top: 2px solid #F3F4F6;
     display: flex;
     justify-content: space-between;
     padding: 5px ;
 }
 
-.people .person-card .person-card-left,
-.people .person-card .person-card-right{
+.dashboard-body .people .person-card .person-card-left,
+.dashboard-body .people .person-card .person-card-right{
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-.people .person-card .person-card-left .person-details{
+.dashboard-body .people .person-card .person-card-left .person-details{
     display: flex;
     flex-direction: column;
     gap: 5px;
+    border: 2px solid red;
 }
 
-.people .person-card .person-card-left .person-details p{
+.dashboard-body .people .person-card .person-card-left .person-details p{
     font-weight: 600;
 }
 
 .dashboard-body .people .add-btn{
     border: none;
     width: 100%;
-    height: 30px;
+    height: 40px;
     border-radius: 10px;
     margin-top: 10px;
     background-color: #818CF8;
@@ -192,7 +136,7 @@ main{
 }
 
 .dashboard-body .histories{
-    border: 2px solid green;
+    border: 2px solid #F3F4F6;
     width: 25%;
     border-radius: 10px;
     padding: 10px;
@@ -201,14 +145,14 @@ main{
 }
 
 .histories .head,
-.people .head{
+.dashboard-body .people .head{
     display: flex;
     justify-content: space-between;
     padding: 5px;
 }
 
 .histories .head button,
-.people .head button{
+.dashboard-body .people .head button{
     border: none;
     background-color: #fff;
     color: #6366F1;
@@ -216,7 +160,7 @@ main{
 }
 
 .histories .head button:hover,
-.people .head button:hover{
+.dashboard-body .people .head button:hover{
     font-weight: bold;
     text-decoration: underline;
 }
@@ -250,17 +194,15 @@ main{
 @media (max-width: 768px) {
     main{
         width: 100%;
+        padding: 0;
         overflow-y: scroll;
     }
-
     .summary-cards .summary-card{
         width: 40%;
     }
-
     .dashboard-body{
         flex-wrap: wrap;
     }
-
     .dashboard-body .people,
     .dashboard-body .histories{
         width: 100%;

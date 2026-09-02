@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import './css/sidebar.css'
+
 import { MdHome, MdPeopleAlt } from "react-icons/md";
 import { IoSettings, IoLogOut  } from "react-icons/io5";
 import { GrTransaction } from "react-icons/gr";
 import { TbReportSearch } from "react-icons/tb";
 
-const Sidebar = () => {
+const Sidebar = ({isSideBarOpen}) => {
     const [activeButton, setActiveButton] = useState("dashboard")
     const navigate = useNavigate()
 
@@ -15,11 +16,10 @@ const Sidebar = () => {
         navigate('/login')
     }
 
-
   return (
-    <div className="sidebar">
+    <>
+    <div className={`sidebar ${isSideBarOpen ? 'open': ''}`}>
         <h2>My App</h2>
-
         <nav>
             <button 
                 className={`dashboard-btn ${activeButton === "dashboard" ? 'active' : '' }`}
@@ -53,6 +53,7 @@ const Sidebar = () => {
             </button>
         </nav>
     </div>
+    </>
   )
 }
 

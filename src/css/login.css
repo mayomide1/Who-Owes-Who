@@ -1,0 +1,87 @@
+.login-container{
+    border: 2px solid #687260;
+    width: 30%;
+    margin: 150px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.login-container .welcome{
+    margin-top: 20px;
+}
+
+.login-container .continue{
+    margin-bottom: 10px;
+}
+
+.login-container .error-msg{
+    text-align: center;
+    color: red;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.login-container label{
+    color: #6366F1;
+    font-weight: 600;
+}
+
+.login-container input{
+    height: 20px;
+    border-radius: 10px;
+    border: 2px solid #687260;
+    padding: 10px;
+}
+
+.login-container button{
+    height: 40px;
+    width: 50%;
+    margin: 0 auto;
+    background-color: #818CF8;
+    border: none;
+    border-radius: 10px;
+    color: #FFF;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.login-container button:hover{
+    background-color: #6366F1;
+}
+
+.login-container .forgotten-password{
+    text-align: end;
+    color: #6366F1;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.login-container .forgotten-password:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.login-container .sign-up{
+    text-align: center;
+    margin-top: 15px;
+}
+
+.login-container .sign-up span{
+    color: #6366F1;
+    font-weight: bold;  
+}
+
+.login-container .sign-up span:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .login-container{
+        width: 80%;
+        margin: 100px auto;
+    }
+}
