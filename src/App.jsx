@@ -1,12 +1,12 @@
-import React from 'react'
-import {Routes, Route} from "react-router-dom"
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Dashboard from "./Dashboard";
-import Login from './Login';
-import People from './People';
-import Transactions from './Transactions';
-import Reports from './Reports';
-import Settings from './Settings';
+import Login from "./Login";
+import People from "./People";
+import Transactions from "./Transactions";
+import Reports from "./Reports";
+import Settings from "./Settings";
 
 const App = () => {
   return (
@@ -20,7 +20,7 @@ const App = () => {
         <Route path="/settings" element={<Settings />} />
       </Routes>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

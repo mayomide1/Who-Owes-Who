@@ -3,8 +3,12 @@
   background-color: #111827;
 }
 
-.sidebar h2 {
-  margin-top: 50px;
+.sidebar img {
+  border: 2px solid #687280;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin: 10px 50px 0;
   text-align: center;
   color: #fff;
 }
@@ -59,13 +63,28 @@ nav .dashboard-btn {
   .sidebar {
     position: fixed;
     top: 0;
-    left: -250px;
+    left: -800px;
     width: 50%;
     height: 100vh;
     transition: transform 0.3s ease;
   }
 
   .sidebar.open {
-    transform: translateX(250px); 
+    transform: translateX(800px); 
+  }
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -800px;
+    width: 50%;
+    height: 100vh;
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar.open {
+    transform: translateX(800px); 
   }
 }

@@ -1,0 +1,46 @@
+.people-container{
+    width: 95%;
+    height: 100vh;
+    margin: 0 auto ; 
+    padding: 10px;
+    overflow-y: scroll;
+    border-radius: 10px;
+    border: 2px solid #F3F4F6;
+}
+
+.people-container .people{
+    width:100%;
+    margin: 20px 0 150px;
+}
+
+.people-container .people .person-card{
+    border-top: 2px solid #F3F4F6;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px ;
+}
+
+.people-container .people .person-card .person-card-left,
+.people-container .people .person-card .person-card-right{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.people-container .people .person-card .person-card-left .person-details{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.people-container .people .person-card .person-card-left .person-details p{
+    font-weight: 600;
+}
+
+@media (max-width:768px){
+   .people-container{
+    width: 90%;
+    overflow-y: hidden;
+    margin-bottom: 20px;
+   } 
+}

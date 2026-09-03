@@ -32,6 +32,7 @@
     background-color: #6366F1;
 }
 
+
 .header .header-right{
     display: flex;
     align-items: center;
@@ -97,3 +98,25 @@
     }
  
 }
+
+@media (max-width: 1024px) {
+    .header{
+        display: flex;
+        align-items: center;
+    }
+
+    .hamburger{
+        display: flex;
+    }
+
+    .header-left h2{
+        font-size: 1rem;
+    }
+
+    .header-left p,
+    .header .header-right .header-right-user{
+        display: none;
+    }
+ 
+}
+

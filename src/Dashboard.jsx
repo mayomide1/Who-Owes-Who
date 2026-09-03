@@ -38,17 +38,17 @@ const dashboard = () => {
     console.log(savedPeople);
   }
 
-  const owesYou = whoOwes.filter(whoOwe => whoOwe.category === "owes you")
-  const youOwe = whoOwes.filter(iOwe => iOwe.category === "you owe")
+  const owesYou = whoOwes.filter((whoOwe) => whoOwe.category === "owes you");
+  const youOwe = whoOwes.filter((iOwe) => iOwe.category === "you owe");
 
   let amountOwed = 0;
-  for(const whoOwe of owesYou){
-    amountOwed += parseInt(whoOwe.amount)
+  for (const whoOwe of owesYou) {
+    amountOwed += parseInt(whoOwe.amount);
   }
 
-    let amountIOwe = 0;
-  for(const iOwe of youOwe){
-    amountIOwe += parseInt(iOwe.amount)
+  let amountIOwe = 0;
+  for (const iOwe of youOwe) {
+    amountIOwe += parseInt(iOwe.amount);
   }
 
   const navigate = useNavigate();
@@ -57,7 +57,7 @@ const dashboard = () => {
       <div className="dashboard">
         <Sidebar />
         <main>
- <Header />
+          <Header />
 
           <div className="summary-cards">
             <div className="summary-card">
@@ -68,7 +68,10 @@ const dashboard = () => {
                 </div>
               </div>
               <h1>₦{amountOwed}</h1>
-              <p>Total from {owesYou.length} {owesYou.length <= 1 ? "person" : "people"}</p>
+              <p>
+                Total from {owesYou.length}{" "}
+                {owesYou.length <= 1 ? "person" : "people"}
+              </p>
             </div>
             <div className="summary-card">
               <div className="summary-card-header">
@@ -78,7 +81,10 @@ const dashboard = () => {
                 </div>
               </div>
               <h1>₦{amountIOwe}</h1>
-              <p>Total from {youOwe.length} {youOwe.length <= 1 ? "person" : "people"}</p>
+              <p>
+                Total from {youOwe.length}{" "}
+                {youOwe.length <= 1 ? "person" : "people"}
+              </p>
             </div>
           </div>
 

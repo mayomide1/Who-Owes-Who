@@ -207,3 +207,21 @@ main{
         width: 100%;
     }
 }
+
+@media (max-width: 1024px) {
+    main{
+        width: 100%;
+        padding: 0;
+        overflow-y: scroll;
+    }
+    .summary-cards .summary-card{
+        width: 40%;
+    }
+    .dashboard-body{
+        flex-wrap: wrap;
+    }
+    .dashboard-body .people,
+    .dashboard-body .histories{
+        width: 100%;
+    }
+}
