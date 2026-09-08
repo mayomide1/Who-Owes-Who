@@ -19,36 +19,34 @@ const dashboard = () => {
   const [notes, setNotes] = useState("");
 
   const savedPeople = JSON.parse(localStorage.getItem("person")) || [];
+  const foundUser = JSON.parse(localStorage.getItem("active_user"));
 
   function savePerson() {
     if (fullName === "") {
       alert("Enter a Name");
       return;
     }
-
     const personData = {
       name: fullName,
       phone: phone,
       notes: notes,
     };
-
     savedPeople.push(personData);
-
     localStorage.setItem("person", JSON.stringify(savedPeople));
     console.log(savedPeople);
   }
-
-  const owesYou = whoOwes.filter((whoOwe) => whoOwe.category === "owes you");
-  const youOwe = whoOwes.filter((iOwe) => iOwe.category === "you owe");
+  const debts = whoOwes.filter((item) => item.userId === foundUser.id);
+  const owesYou = debts.filter((whoOwe) => whoOwe.category === "owes you");
+  const youOwe = debts.filter((iOwe) => iOwe.category === "you owe");
 
   let amountOwed = 0;
   for (const whoOwe of owesYou) {
-    amountOwed += parseInt(whoOwe.amount);
+    amountOwed += Number(whoOwe.amount);
   }
 
   let amountIOwe = 0;
   for (const iOwe of youOwe) {
-    amountIOwe += parseInt(iOwe.amount);
+    amountIOwe += Number(iOwe.amount);
   }
 
   const navigate = useNavigate();
@@ -58,7 +56,6 @@ const dashboard = () => {
         <Sidebar />
         <main>
           <Header />
-
           <div className="summary-cards">
             <div className="summary-card">
               <div className="summary-card-header">

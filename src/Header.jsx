@@ -30,8 +30,8 @@ const Header = () => {
             <GiHamburgerMenu />
           </button>
           <div className="header-left-welcome">
-          <h2>Hello, {loggedUser.firstName} 👋</h2>
-          <p className="summary">Here's what's happening with your money</p>
+            <h2>Hello, {loggedUser.firstName} 👋</h2>
+            <p className="summary">Here's what's happening with your money</p>
           </div>
         </div>
         <div className="header-right">

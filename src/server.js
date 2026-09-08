@@ -1,5 +1,6 @@
 export const user = [
     {
+        id: 1,
         firstName:"Ayomide",
         surname: "Mamukuyomi",
         email:"ayomidemamukuyomi5@gmail.com",
@@ -8,6 +9,7 @@ export const user = [
 
     },
     {
+        id: 2,
         firstName:"Emmanuel",
         surname: "Mamukuyomi",
         email:"ayomidemamukuyomi6@gmail.com",
@@ -18,6 +20,7 @@ export const user = [
 
 export const whoOwes = [
     {
+        userId: 1,
         name: "Emmanuel",
         phone: "08024454940",
         notes:"",
@@ -25,6 +28,7 @@ export const whoOwes = [
         amount: "5000",
     },
     {
+        userId: 1,
         name: "Mum",
         phone: "08024454940",
         notes:"",
@@ -32,6 +36,7 @@ export const whoOwes = [
         amount: "5000",
     },
     {
+        userId: 1,
         name: "Esther",
         phone: "08024454940",
         notes:"",
@@ -39,6 +44,7 @@ export const whoOwes = [
         amount: "5000",
     },
     {
+        userId: 1,
         name: "Fikayomi",
         phone: "08024454940",
         notes:"",
@@ -46,6 +52,7 @@ export const whoOwes = [
         amount: "5000",
     },
     {
+        userId: 1,
         name: "Xexes",
         phone: "08024454940",
         notes:"",
@@ -53,6 +60,7 @@ export const whoOwes = [
         amount: "5000",
     },
     {
+        userId: 1,
         name: "Esther",
         phone: "08024454940",
         notes:"",
@@ -60,6 +68,7 @@ export const whoOwes = [
         amount: "5000",
     },
     {
+        userId: 1,
         name: "Fikayomi",
         phone: "08024454940",
         notes:"",
@@ -67,6 +76,7 @@ export const whoOwes = [
         amount: "5000",
     },
     {
+        userId: 1,
         name: "Xexes",
         phone: "08024454940",
         notes:"",
@@ -74,6 +84,7 @@ export const whoOwes = [
         amount: "5000",
     },
     {
+        userId: 2,
         name: "Emmanuel",
         phone: "08024454940",
         notes:"",
@@ -81,6 +92,7 @@ export const whoOwes = [
         amount: "5000",
     },
     {
+        userId: 2,
         name: "Mum",
         phone: "08024454940",
         notes:"",
@@ -88,6 +100,7 @@ export const whoOwes = [
         amount: "5000",
     },
     {
+        userId: 2,
         name: "Esther",
         phone: "08024454940",
         notes:"",
@@ -95,6 +108,7 @@ export const whoOwes = [
         amount: "5000",
     },
     {
+        userId: 2,
         name: "Fikayomi",
         phone: "08024454940",
         notes:"",
@@ -102,6 +116,7 @@ export const whoOwes = [
         amount: "5000",
     },
     {
+        userId: 2,
         name: "Xexes",
         phone: "08024454940",
         notes:"",
@@ -109,6 +124,7 @@ export const whoOwes = [
         amount: "5000",
     },
     {
+        userId: 2,
         name: "Esther",
         phone: "08024454940",
         notes:"",
@@ -116,6 +132,7 @@ export const whoOwes = [
         amount: "5000",
     },
     {
+        userId: 2,
         name: "Fikayomi",
         phone: "08024454940",
         notes:"",
@@ -123,6 +140,7 @@ export const whoOwes = [
         amount: "5000",
     },
     {
+        userId: 2,
         name: "Xexes",
         phone: "08024454940",
         notes:"",

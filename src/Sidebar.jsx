@@ -8,7 +8,7 @@ import { IoSettings, IoLogOut } from "react-icons/io5";
 import { GrTransaction } from "react-icons/gr";
 import { TbReportSearch } from "react-icons/tb";
 
-const Sidebar = ({ isSideBarOpen, onClose }) => {
+const Sidebar = ({ isSideBarOpen}) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -25,7 +25,7 @@ const Sidebar = ({ isSideBarOpen, onClose }) => {
 
   function logout() {
     localStorage.removeItem("active_user");
-    navigate("/login");
+    navigate("/");
   }
 
   return (

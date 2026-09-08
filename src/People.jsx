@@ -1,20 +1,22 @@
-import React from 'react'
-import Sidebar from './Sidebar';
-import Header from './Header';
-import "./css/people.css"
-import { whoOwes } from './server';
+import React from "react";
+import Sidebar from "./Sidebar";
+import Header from "./Header";
+import "./css/people.css";
+import { whoOwes } from "./server";
 
 import { IoMdArrowDropright } from "react-icons/io";
 const People = () => {
+  const foundUser = JSON.parse(localStorage.getItem("active_user"));
+  const debts = whoOwes.filter((item) => item.userId === foundUser.id);
   return (
     <>
-    <div className='people-page'>
-      <Sidebar />
-    <main>
-    <Header />
-    <div className='people-container'> 
-      <div className="people">
-              {whoOwes.map((person, index) => {
+      <div className="people-page">
+        <Sidebar />
+        <main>
+          <Header />
+          <div className="people-container">
+            <div className="people">
+              {debts.map((person, index) => {
                 return (
                   <div key={index} className="person-card">
                     <div className="person-card-left">
@@ -55,12 +57,12 @@ const People = () => {
                   </div>
                 );
               })}
-    </div>
-    </div>
-    </main>
-    </div>
+            </div>
+          </div>
+        </main>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default People
+export default People;

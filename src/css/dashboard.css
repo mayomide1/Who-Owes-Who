@@ -101,6 +101,12 @@ main{
     padding: 5px ;
 }
 
+.dashboard-body .people .person-card:hover,
+.dashboard-body .histories .history:hover{
+    background-color: #F3F4F6;
+    cursor: pointer;
+}
+
 .dashboard-body .people .person-card .person-card-left,
 .dashboard-body .people .person-card .person-card-right{
     display: flex;

@@ -5,7 +5,8 @@
 
 .dashboard,
 .add-transaction,
-.people-page{
+.people-page,
+.transaction-page{
     display: flex;
      height: 100vh;
 }

@@ -3,14 +3,14 @@
     height: 100vh;
     margin: 0 auto ; 
     padding: 10px;
-    overflow-y: scroll;
     border-radius: 10px;
+    overflow-y: scroll;
     border: 2px solid #F3F4F6;
 }
 
 .people-container .people{
     width:100%;
-    margin: 20px 0 150px;
+    margin-bottom: 150px;
 }
 
 .people-container .people .person-card{
@@ -18,6 +18,11 @@
     display: flex;
     justify-content: space-between;
     padding: 5px ;
+}
+
+.people-container .people .person-card:hover{
+    background-color: #F3F4F6;
+    cursor: pointer;
 }
 
 .people-container .people .person-card .person-card-left,
@@ -37,10 +42,11 @@
     font-weight: 600;
 }
 
-@media (max-width:768px){
-   .people-container{
-    width: 90%;
-    overflow-y: hidden;
-    margin-bottom: 20px;
-   } 
+@media (max-width: 1024px) {
+    .people-container .people{
+        width:100%;
+        margin-bottom: 0;
+    }
+    
 }
+
