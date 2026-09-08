@@ -5,11 +5,14 @@ main{
     overflow-y: hidden;
 }
 
+main h2{
+    margin: 0 0 10px 10px;
+}
+
  .summary-cards{
     display: flex;
     justify-content: space-evenly;
-    padding: 20px;
-    margin-top: 10px;
+    padding: 10px;
 }
 
  .summary-cards .summary-card{
@@ -18,7 +21,7 @@ main{
     gap: 20px;
     width: 30%;
     border: 2px solid #F3F4F6;
-    padding: 20px 10px;
+    padding: 10px 10px;
     border-radius: 10px;
 }
 
@@ -52,29 +55,45 @@ main{
     font-weight: 700;
 }
 
-.summary-cards .summary-card:first-child .summary-card-header div{
+.summary-cards .owes-me .summary-card-header div{
     background-color: #F0FFF0 ;
     color: #006400 ;
 }
 
-.summary-cards .summary-card:first-child h1{
+.summary-cards .owes-me h1{
     color: #006400 ;
     margin-top: -20px;
     font-weight: 700;
 }
 
-.summary-cards .summary-card:last-child .summary-card-header p{
+.summary-cards .i-owe .summary-card-header p{
     color: #FF0000  ;
     font-weight: 700;
 }
 
-.summary-cards .summary-card:last-child .summary-card-header div{
+.summary-cards .i-owe .summary-card-header div{
     background-color: #FF8A8A ;
     color: #FF0000  ;
 }
 
-.summary-cards .summary-card:last-child h1{
+.summary-cards .i-owe h1{
     color: #FF0000  ;
+    margin-top: -20px;
+    font-weight: 700;
+}
+
+.summary-cards .settled .summary-card-header p{
+    color: #6366F1  ;
+    font-weight: 700;
+}
+
+.summary-cards .settled .summary-card-header div{
+    background-color: #818CF8 ;
+    color: #6366F1  ;
+}
+
+.summary-cards .settled h1{
+    color: #6366F1  ;
     margin-top: -20px;
     font-weight: 700;
 }
@@ -84,7 +103,6 @@ main{
     justify-content: space-between;
     gap: 20px;
     padding: 20px;
-    margin-top: 10px;
 }
 
 .dashboard-body .people{
@@ -162,11 +180,11 @@ main{
     background-color: #fff;
     color: #6366F1;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .histories .head button:hover,
 .dashboard-body .people .head button:hover{
-    font-weight: bold;
     text-decoration: underline;
 }
 
@@ -181,8 +199,8 @@ main{
 
 .img-placeholder{
     border-radius: 50%;
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     background-color: #F3F4F6;
 }
 

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { whoOwes } from "./server";
+import { transactionHistory } from "./server";
 import { IoMdArrowDropright } from "react-icons/io";
-import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+import { FaArrowUp, FaArrowDown, FaArrowsAltV } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
 
 import Sidebar from "./Sidebar";
@@ -35,9 +35,12 @@ const dashboard = () => {
     localStorage.setItem("person", JSON.stringify(savedPeople));
     console.log(savedPeople);
   }
-  const debts = whoOwes.filter((item) => item.userId === foundUser.id);
+  const debts = transactionHistory.filter(
+    (item) => item.userId === foundUser.id,
+  );
   const owesYou = debts.filter((whoOwe) => whoOwe.category === "owes you");
   const youOwe = debts.filter((iOwe) => iOwe.category === "you owe");
+  const settled = debts.filter((settle) => settle.category === "settled");
 
   let amountOwed = 0;
   for (const whoOwe of owesYou) {
@@ -49,6 +52,11 @@ const dashboard = () => {
     amountIOwe += Number(iOwe.amount);
   }
 
+  let settledAmount = 0;
+  for (const settle of settled) {
+    settledAmount += Number(settle.amount);
+  }
+
   const navigate = useNavigate();
   return (
     <>
@@ -56,8 +64,9 @@ const dashboard = () => {
         <Sidebar />
         <main>
           <Header />
+          <h2>Dashboard</h2>
           <div className="summary-cards">
-            <div className="summary-card">
+            <div className="summary-card owes-me">
               <div className="summary-card-header">
                 <p>People Owe Me</p>
                 <div>
@@ -70,7 +79,7 @@ const dashboard = () => {
                 {owesYou.length <= 1 ? "person" : "people"}
               </p>
             </div>
-            <div className="summary-card">
+            <div className="summary-card i-owe">
               <div className="summary-card-header">
                 <p>I owe people</p>
                 <div>
@@ -83,6 +92,19 @@ const dashboard = () => {
                 {youOwe.length <= 1 ? "person" : "people"}
               </p>
             </div>
+            <div className="summary-card settled">
+              <div className="summary-card-header">
+                <p>Settled Transaction</p>
+                <div>
+                  <FaArrowsAltV />
+                </div>
+              </div>
+              <h1>₦{settledAmount}</h1>
+              <p>
+                Total from {settled.length}{" "}
+                {settled.length <= 1 ? "person" : "people"}
+              </p>
+            </div>
           </div>
 
           <div className="dashboard-body">
@@ -91,7 +113,7 @@ const dashboard = () => {
                 <h3>People</h3>
                 <button onClick={() => navigate("/people")}>View All</button>
               </div>
-              {whoOwes.slice(0, 5).map((person, index) => {
+              {debts.slice(0, 5).map((person, index) => {
                 return (
                   <div key={index} className="person-card">
                     <div className="person-card-left">
@@ -106,7 +128,9 @@ const dashboard = () => {
                             color:
                               person.category === "owes you"
                                 ? "#0B6623"
-                                : "#FF0000",
+                                : person.category === "you owe"
+                                  ? "#FF0000"
+                                  : "#6366F1",
                           }}
                         >
                           {person.category}
@@ -120,7 +144,9 @@ const dashboard = () => {
                           color:
                             person.category === "owes you"
                               ? "#0B6623"
-                              : "#FF0000",
+                              : person.category === "you owe"
+                                ? "#FF0000"
+                                : "#6366F1",
                         }}
                       >
                         ₦{person.amount}
@@ -145,30 +171,25 @@ const dashboard = () => {
             <div className="histories">
               <div className="head">
                 <h3>Recent Activity</h3>
-                <button>View All</button>
+                <button onClick={() => navigate("/transactions")}>
+                  View All
+                </button>
               </div>
               <div className="body">
-                <div className="history">
-                  <div className="img-placeholder"></div>
-                  <div className="history-info">
-                    <p className="day">Today</p>
-                    <p>David owes you 5,000</p>
-                  </div>
-                </div>
-                <div className="history">
-                  <div className="img-placeholder"></div>
-                  <div className="history-info">
-                    <p className="day">Today</p>
-                    <p>David owes you 5,000</p>
-                  </div>
-                </div>
-                <div className="history">
-                  <div className="img-placeholder"></div>
-                  <div className="history-info">
-                    <p className="day">Today</p>
-                    <p>David owes you 5,000</p>
-                  </div>
-                </div>
+                {debts.slice(0, 5).map((transaction) => {
+                  return (
+                    <div className="history">
+                      <div className="img-placeholder"></div>
+                      <div className="history-info">
+                        <p className="day">{transaction.date}</p>
+                        <p>
+                          {transaction.name} {transaction.category} ₦
+                          {transaction.amount}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>

@@ -1,0 +1,75 @@
+.transaction-container h2{
+    margin: 0 0 10px 10px;
+}
+
+.transaction-container .filter-container {
+    width: 80%;
+    margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 8px;
+  padding: 4px;
+  border-radius: 8px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.filter-container button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 2px solid #6366F1;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #fff;
+  color: #000;
+  transition: all 0.2s ease;
+}
+
+.filter-container button:hover{
+    background-color: #6366F1;
+}
+
+/* Active State */
+.filter-container button.active {
+  background-color: #6366F1;
+      color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-container .transactions{
+    width: 95%;
+    height: 69vh;
+    margin: 10px auto; 
+    padding: 10px;
+    border-radius: 10px;
+    overflow-y: scroll;
+    border: 2px solid #F3F4F6;
+}
+
+.transaction-container .transactions .history{
+    display: flex;
+    border-bottom: 2px solid #F3F4F6;
+    padding: 5px ;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.transaction-container .transactions .history:hover{
+    background-color: #F3F4F6;
+    cursor: pointer;
+}
+
+.transaction-container .transactions .history .history-left{
+    display: flex;
+    gap: 20px;
+}
+
+.transaction-container .transactions .history .history-left .history-info p{
+    font-weight: 600;
+}
+
+.transaction-container .transactions .history .history-right p{
+    color: #4b5563;
+}
+

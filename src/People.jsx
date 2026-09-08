@@ -2,19 +2,21 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import "./css/people.css";
-import { whoOwes } from "./server";
+import { transactionHistory } from "./server";
 
 import { IoMdArrowDropright } from "react-icons/io";
 const People = () => {
   const foundUser = JSON.parse(localStorage.getItem("active_user"));
-  const debts = whoOwes.filter((item) => item.userId === foundUser.id);
+  const debts = transactionHistory.filter((item) => item.userId === foundUser.id);
   return (
     <>
       <div className="people-page">
         <Sidebar />
         <main>
           <Header />
-          <div className="people-container">
+          
+          <div className="people-container"> 
+            <h2>People</h2>
             <div className="people">
               {debts.map((person, index) => {
                 return (
@@ -29,9 +31,11 @@ const People = () => {
                           className="person-status"
                           style={{
                             color:
-                              person.category === "owes you"
-                                ? "#0B6623"
-                                : "#FF0000",
+                            person.category === "owes you"
+                              ? "#0B6623"
+                              : person.category === "you owe" 
+                              ? "#FF0000"
+                              : "#6366F1",
                           }}
                         >
                           {person.category}
@@ -45,7 +49,9 @@ const People = () => {
                           color:
                             person.category === "owes you"
                               ? "#0B6623"
-                              : "#FF0000",
+                              : person.category === "you owe" 
+                              ? "#FF0000"
+                              : "#6366F1",
                         }}
                       >
                         ₦{person.amount}
