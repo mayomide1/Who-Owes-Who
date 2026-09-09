@@ -3,6 +3,7 @@ import Sidebar from "./Sidebar";
 import Header from "./Header";
 import { transactionHistory } from "./server";
 import "../src/css/transactions.css";
+import "../src/css/noTransaction.css";
 const Transactions = () => {
   const [activeButton, setActiveButton] = useState("all");
   const foundUser = JSON.parse(localStorage.getItem("active_user"));
@@ -28,6 +29,34 @@ filteredTransactions = filteredTransactions.filter(transaction => transaction.ca
           <Header />
           <div className="transaction-container">
             <h2>All Transactions</h2>
+            {
+              filteredTransactions.length === 0
+              ?
+              <main className="transaction-card">
+
+        <div className="illustration">
+            <div className="wallet">
+                <div className="wallet-flap"></div>
+                <div className="wallet-button"></div>
+            </div>
+
+            <div className="plus">+</div>
+        </div>
+
+        <div className="content">
+            <h2>No Transactions Yet</h2>
+
+            <p>
+                You haven't added any transactions.<br/>
+                Let's get started.
+            </p>
+
+            <button>Add Transaction</button>
+        </div>
+
+    </main> :
+
+          <>
             <div className="filter-container">
               <button
                 onClick={() => setActiveButton("all")}
@@ -87,7 +116,7 @@ filteredTransactions = filteredTransactions.filter(transaction => transaction.ca
                                 : "#6366F1",
                         }}
                       >
-                        ₦{transaction.amount}
+                        ₦{transaction.amount.toLocaleString()}
                       </h3>
                       <p>{transaction.date}</p>
                     </div>
@@ -95,6 +124,8 @@ filteredTransactions = filteredTransactions.filter(transaction => transaction.ca
                 );
               })}
             </div>
+            </>
+          }
           </div>
         </main>
       </div>

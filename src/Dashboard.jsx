@@ -35,12 +35,12 @@ const dashboard = () => {
     localStorage.setItem("person", JSON.stringify(savedPeople));
     console.log(savedPeople);
   }
-  const debts = transactionHistory.filter(
+  const filteredTransaction = transactionHistory.filter(
     (item) => item.userId === foundUser.id,
   );
-  const owesYou = debts.filter((whoOwe) => whoOwe.category === "owes you");
-  const youOwe = debts.filter((iOwe) => iOwe.category === "you owe");
-  const settled = debts.filter((settle) => settle.category === "settled");
+  const owesYou = filteredTransaction.filter((whoOwe) => whoOwe.category === "owes you");
+  const youOwe = filteredTransaction.filter((iOwe) => iOwe.category === "you owe");
+  const settled = filteredTransaction.filter((settle) => settle.category === "settled");
 
   let amountOwed = 0;
   for (const whoOwe of owesYou) {
@@ -73,7 +73,7 @@ const dashboard = () => {
                   <FaArrowUp />
                 </div>
               </div>
-              <h1>₦{amountOwed}</h1>
+              <h1>₦{amountOwed.toLocaleString()}</h1>
               <p>
                 Total from {owesYou.length}{" "}
                 {owesYou.length <= 1 ? "person" : "people"}
@@ -86,7 +86,7 @@ const dashboard = () => {
                   <FaArrowDown />
                 </div>
               </div>
-              <h1>₦{amountIOwe}</h1>
+              <h1>₦{amountIOwe.toLocaleString()}</h1>
               <p>
                 Total from {youOwe.length}{" "}
                 {youOwe.length <= 1 ? "person" : "people"}
@@ -99,7 +99,7 @@ const dashboard = () => {
                   <FaArrowsAltV />
                 </div>
               </div>
-              <h1>₦{settledAmount}</h1>
+              <h1>₦{settledAmount.toLocaleString()}</h1>
               <p>
                 Total from {settled.length}{" "}
                 {settled.length <= 1 ? "person" : "people"}
@@ -113,9 +113,9 @@ const dashboard = () => {
                 <h3>People</h3>
                 <button onClick={() => navigate("/people")}>View All</button>
               </div>
-              {debts.slice(0, 5).map((person, index) => {
+              {filteredTransaction.slice(0, 5).map((person, index) => {
                 return (
-                  <div key={index} className="person-card">
+                  <div key={index} className="person-card" onClick={() => navigate(`/person/${person.id}`)}>
                     <div className="person-card-left">
                       <div className="person-avatar">
                         <div className="img-placeholder"></div>
@@ -149,9 +149,9 @@ const dashboard = () => {
                                 : "#6366F1",
                         }}
                       >
-                        ₦{person.amount}
+                        ₦{person.amount.toLocaleString()}
                       </h3>
-                      <button className="person-arrow-btn">
+                      <button className="person-arrow">
                         <IoMdArrowDropright />
                       </button>
                     </div>
@@ -176,7 +176,7 @@ const dashboard = () => {
                 </button>
               </div>
               <div className="body">
-                {debts.slice(0, 5).map((transaction) => {
+                {filteredTransaction.slice(0, 5).map((transaction) => {
                   return (
                     <div className="history">
                       <div className="img-placeholder"></div>
@@ -184,7 +184,7 @@ const dashboard = () => {
                         <p className="day">{transaction.date}</p>
                         <p>
                           {transaction.name} {transaction.category} ₦
-                          {transaction.amount}
+                          {transaction.amount.toLocaleString()}
                         </p>
                       </div>
                     </div>

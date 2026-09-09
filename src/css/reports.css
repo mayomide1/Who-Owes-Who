@@ -1,0 +1,98 @@
+.reports-container{
+    height: 83vh;
+}
+
+.reports-container .header h2,
+.reports-container .reports .body h2{
+     margin: 10px;
+}
+
+.reports-container .header select{
+    width: 120px;
+    border-radius: 10px;
+}
+
+.reports-container .reports-summaries{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.reports-container .reports-summaries .report-summary{
+    border: 2px solid #F3F4F6;
+    width: 30%;
+    border-radius: 10px;
+    padding: 10px;  
+}
+
+.reports-container .reports-summaries .report-summary h1{
+    margin: 20px 0;
+}
+
+.money-recovered h1,
+.money-recovered h4{
+    color: #6366F1;
+}
+
+.outstanding h1,
+.outstanding h4{
+    color: #FF0000;
+}
+
+.reports-container .body{
+    width: 95%;
+    height: 45vh;
+    margin: 0 auto;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.reports-container .body .reports-people{
+    width: 65%;
+    height: 100%;
+    border: 2px solid #F3F4F6;
+    padding: 5px;
+    border-radius: 15px;
+    overflow-y: scroll;
+}
+
+.reports-container .reports-people .person{
+    border-top: 2px solid #F3F4F6;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.reports-container .reports-people .person .user{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.reports-container .body .graph{
+    border: 2px solid #F3F4F6;
+    border: 2px solid red;
+    width: 30%;
+    border-radius: 15px;
+}
+
+@media (max-width: 1024px) {
+    .reports-container .body{
+        width: 90%;
+        height: 100vh;
+    }
+    .reports-container .body .reports-people,
+    .reports-container .body .graph{
+        width: 100%;
+        height: 45vh;
+    }
+    .reports-container .body .graph{
+        width: 100%;
+    }
+}

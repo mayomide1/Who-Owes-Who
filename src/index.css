@@ -6,7 +6,9 @@
 .dashboard,
 .add-transaction,
 .people-page,
-.transaction-page{
+.transaction-page,
+.reports-page,
+.settings-page{
     display: flex;
      height: 100vh;
 }

@@ -2,12 +2,15 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import "./css/people.css";
+import "./css/noPerson.css"
 import { transactionHistory } from "./server";
 
 import { IoMdArrowDropright } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 const People = () => {
   const foundUser = JSON.parse(localStorage.getItem("active_user"));
-  const debts = transactionHistory.filter((item) => item.userId === foundUser.id);
+  const filteredTransaction = transactionHistory.filter((item) => item.userId === foundUser.id);
+  const navigate = useNavigate()
   return (
     <>
       <div className="people-page">
@@ -17,10 +20,41 @@ const People = () => {
           
           <div className="people-container"> 
             <h2>People</h2>
+            {
+              filteredTransaction.length === 0 
+              ? 
+                  <main class="empty-card">
+
+        <div class="person-illustration">
+
+            <div class="profile-card">
+                <div class="person-head"></div>
+                <div class="person-body"></div>
+            </div>
+
+            <div class="search-icon"></div>
+
+        </div>
+
+        <div class="content">
+
+            <h2>No People Found</h2>
+
+            <p>
+                We couldn't find anyone<br/>
+                Try a different search.
+            </p>
+
+            <button>Clear Search</button>
+
+        </div>
+
+    </main>
+    :
             <div className="people">
-              {debts.map((person, index) => {
+              {filteredTransaction.map((person, index) => {
                 return (
-                  <div key={index} className="person-card">
+                  <div key={index} className="person-card" onClick={() => navigate(`/person/${person.id}`)}>
                     <div className="person-card-left">
                       <div className="person-avatar">
                         <div className="img-placeholder"></div>
@@ -54,9 +88,9 @@ const People = () => {
                               : "#6366F1",
                         }}
                       >
-                        ₦{person.amount}
+                        ₦{person.amount.toLocaleString()}
                       </h3>
-                      <button className="person-arrow-btn">
+                      <button className="person-arrow">
                         <IoMdArrowDropright />
                       </button>
                     </div>
@@ -64,6 +98,7 @@ const People = () => {
                 );
               })}
             </div>
+}
           </div>
         </main>
       </div>
