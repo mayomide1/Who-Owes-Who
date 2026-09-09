@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
-import { transactionHistory } from "./server";
+import { people } from "./server";
 import "../src/css/transactions.css";
 import "../src/css/noTransaction.css";
 const Transactions = () => {
   const [activeButton, setActiveButton] = useState("all");
   const foundUser = JSON.parse(localStorage.getItem("active_user"));
-  let filteredTransactions = transactionHistory.filter(
+  let filteredTransactions = people.filter(
     (item) => item.userId === foundUser.id,
   );
 

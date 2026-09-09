@@ -3,16 +3,57 @@ import Sidebar from "./Sidebar";
 import Header from "./Header";
 import "./css/people.css";
 import "./css/noPerson.css";
-import { transactionHistory } from "./server";
+import { people, transactions } from "./server";
 
 import { IoMdArrowDropright } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 const People = () => {
+  const navigate = useNavigate();
   const foundUser = JSON.parse(localStorage.getItem("active_user"));
-  const filteredTransaction = transactionHistory.filter(
+  const loggedUserPeople = people.filter(
     (item) => item.userId === foundUser.id,
   );
-  const navigate = useNavigate();
+
+  const peopleWithTransactions = loggedUserPeople.map((person) => {
+    
+    const personTransactions = transactions.filter((transaction) => 
+      transaction.personId === person.id
+    )
+    let amountOwedToYou = 0;
+    let amountYouOweThem = 0;
+    let totalSettled = 0;
+
+    personTransactions.forEach((transaction) => {
+      const amount = Number(transaction.amount);
+
+      if (transaction.category === "owes you") amountOwedToYou += amount;
+      if (transaction.category === "you owe") amountYouOweThem += amount;
+      if (transaction.category === "settled") totalSettled += amount;
+    });
+
+    let category = "settled";
+    if (amountOwedToYou > amountYouOweThem) {
+      category = "owes you";
+      amountOwedToYou -= amountYouOweThem; // Net amount
+      amountYouOweThem = 0;
+    } else if (amountYouOweThem > amountOwedToYou) {
+      category = "you owe";
+      amountYouOweThem -= amountOwedToYou; // Net amount
+      amountOwedToYou = 0;
+    }
+
+    return {
+      ...person,
+      category: category,
+      amount: category === "owes you" ? amountOwedToYou : amountYouOweThem,
+      transactions: personTransactions,
+    };
+  });
+
+
+
+
+  
   return (
     <>
       <div className="people-page">
@@ -21,7 +62,7 @@ const People = () => {
           <Header />
           <div className="people-container">
             <h2>People</h2>
-            {filteredTransaction.length === 0 ? (
+            {peopleWithTransactions.length === 0 ? (
               <main class="empty-card">
                 <div class="person-illustration">
                   <div class="profile-card">
@@ -46,7 +87,7 @@ const People = () => {
               </main>
             ) : (
               <div className="people">
-                {filteredTransaction.map((person, index) => {
+                {peopleWithTransactions.map((person, index) => {
                   return (
                     <div
                       key={index}

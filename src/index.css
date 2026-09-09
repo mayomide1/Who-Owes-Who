@@ -8,7 +8,8 @@
 .people-page,
 .transaction-page,
 .reports-page,
-.settings-page{
+.settings-page,
+.person-info-page{
     display: flex;
     height: 100vh;
 }

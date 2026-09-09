@@ -10,16 +10,16 @@ const Login = () => {
   const navigate = useNavigate();
 
   function login() {
-    const foundUser = user.find(
+    const loggedUser = user.find(
       (u) => u.email === email && u.password === password,
     );
 
     if (email === "" || password === "") {
       setErroMsg("Enter your email address and password");
-    } else if (foundUser) {
-      localStorage.setItem("active_user", JSON.stringify(foundUser));
+    } else if (loggedUser) {
+      localStorage.setItem("active_user", JSON.stringify(loggedUser));
       navigate("/dashboard");
-      return foundUser;
+      return loggedUser;
     } else {
       setErroMsg("Invalid login credentials");
       return null;

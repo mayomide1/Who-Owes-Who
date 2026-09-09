@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { transactionHistory } from "./server";
+import { people, transactions} from "./server";
 import { IoMdArrowDropright } from "react-icons/io";
 import { FaArrowUp, FaArrowDown, FaArrowsAltV } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
@@ -19,7 +19,8 @@ const dashboard = () => {
   const [notes, setNotes] = useState("");
 
   const savedPeople = JSON.parse(localStorage.getItem("person")) || [];
-  const foundUser = JSON.parse(localStorage.getItem("active_user"));
+  const loggedUser = JSON.parse(localStorage.getItem("active_user"));
+    const navigate = useNavigate();
 
   function savePerson() {
     if (fullName === "") {
@@ -35,35 +36,72 @@ const dashboard = () => {
     localStorage.setItem("person", JSON.stringify(savedPeople));
     console.log(savedPeople);
   }
-  const filteredTransaction = transactionHistory.filter(
-    (item) => item.userId === foundUser.id,
-  );
-  const owesYou = filteredTransaction.filter(
-    (whoOwe) => whoOwe.category === "owes you",
-  );
-  const youOwe = filteredTransaction.filter(
-    (iOwe) => iOwe.category === "you owe",
-  );
-  const settled = filteredTransaction.filter(
-    (settle) => settle.category === "settled",
+
+  const loggedUserPeople = people.filter(
+    (people) => people.userId === loggedUser.id,
   );
 
-  let amountOwed = 0;
-  for (const whoOwe of owesYou) {
-    amountOwed += Number(whoOwe.amount);
-  }
+  const peopleWithTransactions = loggedUserPeople.map((person) => {
+    
+    const personTransactions = transactions.filter(
+      (transaction) => transaction.personId === person.id
+    );
 
-  let amountIOwe = 0;
-  for (const iOwe of youOwe) {
-    amountIOwe += Number(iOwe.amount);
-  }
+    let amountOwedToYou = 0;
+    let amountYouOweThem = 0;
+    let totalSettled = 0;
 
-  let settledAmount = 0;
-  for (const settle of settled) {
-    settledAmount += Number(settle.amount);
-  }
+    personTransactions.forEach((transaction) => {
+      const amount = Number(transaction.amount);
 
-  const navigate = useNavigate();
+      if (transaction.category === "owes you") amountOwedToYou += amount;
+      if (transaction.category === "you owe") amountYouOweThem += amount;
+      if (transaction.category === "settled") totalSettled += amount;
+    });
+
+    let category = "settled";
+    if (amountOwedToYou > amountYouOweThem) {
+      category = "owes you";
+      amountOwedToYou -= amountYouOweThem; // Net amount
+      amountYouOweThem = 0;
+    } else if (amountYouOweThem > amountOwedToYou) {
+      category = "you owe";
+      amountYouOweThem -= amountOwedToYou; // Net amount
+      amountOwedToYou = 0;
+    }
+
+    return {
+      ...person,
+      category: category,
+      amount: category === "owes you" ? amountOwedToYou : amountYouOweThem,
+      transactions: personTransactions,
+    };
+  });
+
+  // 6. Calculate Global Totals (for the Summary Cards)
+  // We iterate through our new combined array
+  let totalOwesYou = 0;
+  let totalYouOwe = 0;
+  let totalSettled = 0;
+
+  peopleWithTransactions.forEach((person) => {
+    if (person.category === "owes you") totalOwesYou += person.amount;
+    if (person.category === "you owe") totalYouOwe += person.amount;
+    if (person.category === "settled") totalSettled += person.amount;
+  });
+
+  // 7. Filter for the Recent Activity (Global transactions for the logged user's people)
+  const loggedUserPeopleIds = loggedUserPeople.map(person => person.id);
+  const loggedUserTransactions = transactions.filter(t => loggedUserPeopleIds.includes(t.personId));
+
+  const owesYou = peopleWithTransactions.filter(p => p.category === "owes you");
+  const youOwe = peopleWithTransactions.filter(p => p.category === "you owe");
+  const settled = peopleWithTransactions.filter(p => p.category === "settled");
+  
+  let amountOwed = totalOwesYou;
+  let amountIOwe = totalYouOwe;
+  let settledAmount = totalSettled;
+
   return (
     <>
       <div className="dashboard">
@@ -119,7 +157,7 @@ const dashboard = () => {
                 <h3>People</h3>
                 <button onClick={() => navigate("/people")}>View All</button>
               </div>
-              {filteredTransaction.length === 0 ? (
+              {peopleWithTransactions.length === 0 ? (
                 <main class="empty-card">
                   <div class="person-illustration">
                     <div class="profile-card">
@@ -136,7 +174,7 @@ const dashboard = () => {
                     <p>
                       We couldn't find anyone
                       <br />
-                    Let's get started.
+                      Let's get started.
                     </p>
 
                     <button>Add Transaction</button>
@@ -144,7 +182,7 @@ const dashboard = () => {
                 </main>
               ) : (
                 <>
-                  {filteredTransaction.slice(0, 5).map((person, index) => {
+                  {peopleWithTransactions.slice(0, 5).map((person, index) => {
                     return (
                       <div
                         key={index}
@@ -193,14 +231,14 @@ const dashboard = () => {
                       </div>
                     );
                   })}
-              <button
-                className="add-btn"
-                onClick={() =>
-                  setIsTransactionModalOpen(!isTransactionModalOpen)
-                }
-              >
-                Add Transaction
-              </button>
+                  <button
+                    className="add-btn"
+                    onClick={() =>
+                      setIsTransactionModalOpen(!isTransactionModalOpen)
+                    }
+                  >
+                    Add Transaction
+                  </button>
                 </>
               )}
             </div>
@@ -213,7 +251,7 @@ const dashboard = () => {
                 </button>
               </div>
               <div className="body">
-                {filteredTransaction.length === 0 ? (
+                {loggedUserTransactions.length === 0 ? (
                   <main className="transaction-card">
                     <div className="illustration">
                       <div className="wallet">
@@ -229,8 +267,8 @@ const dashboard = () => {
 
                       <p>
                         You haven't added any transactions.
-                      <br />
-                    Let's get started.
+                        <br />
+                        Let's get started.
                       </p>
 
                       <button>Add Transaction</button>
@@ -238,14 +276,15 @@ const dashboard = () => {
                   </main>
                 ) : (
                   <>
-                    {filteredTransaction.slice(0, 5).map((transaction) => {
+                    {loggedUserTransactions.slice(0, 5).map((transaction, index) => {
+                      const personName = people.find(p => p.id === transaction.personId)?.name || "Unknown";
                       return (
-                        <div className="history">
+                        <div className="history" key={index}>
                           <div className="img-placeholder"></div>
                           <div className="history-info">
                             <p className="day">{transaction.date}</p>
                             <p>
-                              {transaction.name} {transaction.category} ₦
+                              {personName} {transaction.category} ₦
                               {transaction.amount.toLocaleString()}
                             </p>
                           </div>
