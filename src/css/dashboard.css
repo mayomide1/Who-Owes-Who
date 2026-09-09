@@ -109,11 +109,21 @@ main h2{
 
 .dashboard-body .people{
     border: 2px solid #F3F4F6;
-    width: 70%;
+    width: 60%;
     height: 50vh;
-    overflow: hidden;
     border-radius: 10px;
     padding: 10px;
+    overflow: hidden;
+}
+
+.dashboard-body .people .empty-card{
+    width: 70%;
+    height: 180px;
+    overflow: hidden;
+}
+
+.dashboard-body .people .empty-card .person-illustration{
+    display: none;
 }
 
 .dashboard-body .people .person-card{
@@ -164,7 +174,7 @@ main h2{
 
 .dashboard-body .histories{
     border: 2px solid #F3F4F6;
-    width: 25%;
+    width: 30%;
     border-radius: 10px;
     padding: 10px;
     display: flex;
@@ -190,6 +200,16 @@ main h2{
 .histories .head button:hover,
 .dashboard-body .people .head button:hover{
     text-decoration: underline;
+}
+
+.dashboard-body .histories .transaction-card{
+    overflow: hidden;
+    width: 70%;
+    height: 180px;
+}
+
+.dashboard-body .histories .transaction-card .illustration{ 
+    display: none;
 }
 
 .dashboard-body .histories .history{
@@ -218,24 +238,6 @@ main h2{
     font-weight: 600;
 }
 
-@media (max-width: 768px) {
-    main{
-        width: 100%;
-        padding: 0;
-        overflow-y: scroll;
-    }
-    .summary-cards .summary-card{
-        width: 40%;
-    }
-    .dashboard-body{
-        flex-wrap: wrap;
-    }
-    .dashboard-body .people,
-    .dashboard-body .histories{
-        width: 100%;
-    }
-}
-
 @media (max-width: 1024px) {
     main{
         width: 100%;
@@ -251,5 +253,6 @@ main h2{
     .dashboard-body .people,
     .dashboard-body .histories{
         width: 100%;
+        height: 50vh;
     }
 }

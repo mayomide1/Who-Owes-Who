@@ -11,15 +11,21 @@ const Transactions = () => {
     (item) => item.userId === foundUser.id,
   );
 
-  if (activeButton === "owes_me"){
-    filteredTransactions = filteredTransactions.filter(transaction => transaction.category === "owes you" )
-  } else if(activeButton === "you_owe"){
-    filteredTransactions = filteredTransactions.filter(transaction => transaction.category === "you owe" )
-  }else if(activeButton === "settled"){
-filteredTransactions = filteredTransactions.filter(transaction => transaction.category === "settled" )
-}  else{
-  filteredTransactions
-}
+  if (activeButton === "owes_me") {
+    filteredTransactions = filteredTransactions.filter(
+      (transaction) => transaction.category === "owes you",
+    );
+  } else if (activeButton === "you_owe") {
+    filteredTransactions = filteredTransactions.filter(
+      (transaction) => transaction.category === "you owe",
+    );
+  } else if (activeButton === "settled") {
+    filteredTransactions = filteredTransactions.filter(
+      (transaction) => transaction.category === "settled",
+    );
+  } else {
+    filteredTransactions;
+  }
 
   return (
     <>
@@ -29,103 +35,100 @@ filteredTransactions = filteredTransactions.filter(transaction => transaction.ca
           <Header />
           <div className="transaction-container">
             <h2>All Transactions</h2>
-            {
-              filteredTransactions.length === 0
-              ?
+            {filteredTransactions.length === 0 ? (
               <main className="transaction-card">
-
-        <div className="illustration">
-            <div className="wallet">
-                <div className="wallet-flap"></div>
-                <div className="wallet-button"></div>
-            </div>
-
-            <div className="plus">+</div>
-        </div>
-
-        <div className="content">
-            <h2>No Transactions Yet</h2>
-
-            <p>
-                You haven't added any transactions.<br/>
-                Let's get started.
-            </p>
-
-            <button>Add Transaction</button>
-        </div>
-
-    </main> :
-
-          <>
-            <div className="filter-container">
-              <button
-                onClick={() => setActiveButton("all")}
-                className={activeButton === "all" ? "active" : ""}
-              >
-                All
-              </button>
-              <button
-                onClick={() => setActiveButton("owes_me")}
-                className={activeButton === "owes_me" ? "active" : ""}
-              >
-                Owes Me
-              </button>
-              <button
-                onClick={() => setActiveButton("you_owe")}
-                className={activeButton === "you_owe" ? "active" : ""}
-              >
-                I Owe
-              </button>
-              <button
-                onClick={() => setActiveButton("settled")}
-                className={activeButton === "settled" ? "active" : ""}
-              >
-                Settled
-              </button>
-            </div>
-            <div className="transactions">
-              {filteredTransactions.map((transaction, index) => {
-                return (
-                  <div className="history" key={index}>
-                    <div className="history-left">
-                      <div className="img-placeholder"></div>
-                      <div className="history-info">
-                        <h3 className="day">{transaction.name}</h3>
-                        <p
-                          style={{
-                            color:
-                              transaction.category === "owes you"
-                                ? "#0B6623"
-                                : transaction.category === "you owe"
-                                  ? "#FF0000"
-                                  : "#6366F1",
-                          }}
-                        >
-                          {transaction.category}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="history-right">
-                      <h3
-                        style={{
-                          color:
-                            transaction.category === "owes you"
-                              ? "#0B6623"
-                              : transaction.category === "you owe"
-                                ? "#FF0000"
-                                : "#6366F1",
-                        }}
-                      >
-                        ₦{transaction.amount.toLocaleString()}
-                      </h3>
-                      <p>{transaction.date}</p>
-                    </div>
+                <div className="illustration">
+                  <div className="wallet">
+                    <div className="wallet-flap"></div>
+                    <div className="wallet-button"></div>
                   </div>
-                );
-              })}
-            </div>
-            </>
-          }
+
+                  <div className="plus">+</div>
+                </div>
+
+                <div className="content">
+                  <h2>No Transactions Yet</h2>
+
+                  <p>
+                    You haven't added any transactions.
+                    <br />
+                    Let's get started.
+                  </p>
+
+                  <button>Add Transaction</button>
+                </div>
+              </main>
+            ) : (
+              <>
+                <div className="filter-container">
+                  <button
+                    onClick={() => setActiveButton("all")}
+                    className={activeButton === "all" ? "active" : ""}
+                  >
+                    All
+                  </button>
+                  <button
+                    onClick={() => setActiveButton("owes_me")}
+                    className={activeButton === "owes_me" ? "active" : ""}
+                  >
+                    Owes Me
+                  </button>
+                  <button
+                    onClick={() => setActiveButton("you_owe")}
+                    className={activeButton === "you_owe" ? "active" : ""}
+                  >
+                    I Owe
+                  </button>
+                  <button
+                    onClick={() => setActiveButton("settled")}
+                    className={activeButton === "settled" ? "active" : ""}
+                  >
+                    Settled
+                  </button>
+                </div>
+                <div className="transactions">
+                  {filteredTransactions.map((transaction, index) => {
+                    return (
+                      <div className="history" key={index}>
+                        <div className="history-left">
+                          <div className="img-placeholder"></div>
+                          <div className="history-info">
+                            <h3 className="day">{transaction.name}</h3>
+                            <p
+                              style={{
+                                color:
+                                  transaction.category === "owes you"
+                                    ? "#0B6623"
+                                    : transaction.category === "you owe"
+                                      ? "#FF0000"
+                                      : "#6366F1",
+                              }}
+                            >
+                              {transaction.category}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="history-right">
+                          <h3
+                            style={{
+                              color:
+                                transaction.category === "owes you"
+                                  ? "#0B6623"
+                                  : transaction.category === "you owe"
+                                    ? "#FF0000"
+                                    : "#6366F1",
+                            }}
+                          >
+                            ₦{transaction.amount.toLocaleString()}
+                          </h3>
+                          <p>{transaction.date}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
+            )}
           </div>
         </main>
       </div>

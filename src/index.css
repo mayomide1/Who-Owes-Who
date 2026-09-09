@@ -10,7 +10,7 @@
 .reports-page,
 .settings-page{
     display: flex;
-     height: 100vh;
+    height: 100vh;
 }
 
 .modal-overlay {

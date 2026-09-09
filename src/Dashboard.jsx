@@ -38,9 +38,15 @@ const dashboard = () => {
   const filteredTransaction = transactionHistory.filter(
     (item) => item.userId === foundUser.id,
   );
-  const owesYou = filteredTransaction.filter((whoOwe) => whoOwe.category === "owes you");
-  const youOwe = filteredTransaction.filter((iOwe) => iOwe.category === "you owe");
-  const settled = filteredTransaction.filter((settle) => settle.category === "settled");
+  const owesYou = filteredTransaction.filter(
+    (whoOwe) => whoOwe.category === "owes you",
+  );
+  const youOwe = filteredTransaction.filter(
+    (iOwe) => iOwe.category === "you owe",
+  );
+  const settled = filteredTransaction.filter(
+    (settle) => settle.category === "settled",
+  );
 
   let amountOwed = 0;
   for (const whoOwe of owesYou) {
@@ -113,51 +119,80 @@ const dashboard = () => {
                 <h3>People</h3>
                 <button onClick={() => navigate("/people")}>View All</button>
               </div>
-              {filteredTransaction.slice(0, 5).map((person, index) => {
-                return (
-                  <div key={index} className="person-card" onClick={() => navigate(`/person/${person.id}`)}>
-                    <div className="person-card-left">
-                      <div className="person-avatar">
-                        <div className="img-placeholder"></div>
-                      </div>
-                      <div className="person-details">
-                        <h3 className="person-name">{person.name}</h3>
-                        <p
-                          className="person-status"
-                          style={{
-                            color:
-                              person.category === "owes you"
-                                ? "#0B6623"
-                                : person.category === "you owe"
-                                  ? "#FF0000"
-                                  : "#6366F1",
-                          }}
-                        >
-                          {person.category}
-                        </p>
-                      </div>
+              {filteredTransaction.length === 0 ? (
+                <main class="empty-card">
+                  <div class="person-illustration">
+                    <div class="profile-card">
+                      <div class="person-head"></div>
+                      <div class="person-body"></div>
                     </div>
-                    <div className="person-card-right">
-                      <h3
-                        className="person-amount"
-                        style={{
-                          color:
-                            person.category === "owes you"
-                              ? "#0B6623"
-                              : person.category === "you owe"
-                                ? "#FF0000"
-                                : "#6366F1",
-                        }}
-                      >
-                        ₦{person.amount.toLocaleString()}
-                      </h3>
-                      <button className="person-arrow">
-                        <IoMdArrowDropright />
-                      </button>
-                    </div>
+
+                    <div class="search-icon"></div>
                   </div>
-                );
-              })}
+
+                  <div class="content">
+                    <h2>No People Found</h2>
+
+                    <p>
+                      We couldn't find anyone
+                      <br />
+                    Let's get started.
+                    </p>
+
+                    <button>Add Transaction</button>
+                  </div>
+                </main>
+              ) : (
+                <>
+                  {filteredTransaction.slice(0, 5).map((person, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="person-card"
+                        onClick={() => navigate(`/person/${person.id}`)}
+                      >
+                        <div className="person-card-left">
+                          <div className="person-avatar">
+                            <div className="img-placeholder"></div>
+                          </div>
+                          <div className="person-details">
+                            <h3 className="person-name">{person.name}</h3>
+                            <p
+                              className="person-status"
+                              style={{
+                                color:
+                                  person.category === "owes you"
+                                    ? "#0B6623"
+                                    : person.category === "you owe"
+                                      ? "#FF0000"
+                                      : "#6366F1",
+                              }}
+                            >
+                              {person.category}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="person-card-right">
+                          <h3
+                            className="person-amount"
+                            style={{
+                              color:
+                                person.category === "owes you"
+                                  ? "#0B6623"
+                                  : person.category === "you owe"
+                                    ? "#FF0000"
+                                    : "#6366F1",
+                            }}
+                          >
+                            ₦{person.amount.toLocaleString()}
+                          </h3>
+                          <button className="person-arrow">
+                            <IoMdArrowDropright />
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
               <button
                 className="add-btn"
                 onClick={() =>
@@ -166,6 +201,8 @@ const dashboard = () => {
               >
                 Add Transaction
               </button>
+                </>
+              )}
             </div>
 
             <div className="histories">
@@ -176,20 +213,47 @@ const dashboard = () => {
                 </button>
               </div>
               <div className="body">
-                {filteredTransaction.slice(0, 5).map((transaction) => {
-                  return (
-                    <div className="history">
-                      <div className="img-placeholder"></div>
-                      <div className="history-info">
-                        <p className="day">{transaction.date}</p>
-                        <p>
-                          {transaction.name} {transaction.category} ₦
-                          {transaction.amount.toLocaleString()}
-                        </p>
+                {filteredTransaction.length === 0 ? (
+                  <main className="transaction-card">
+                    <div className="illustration">
+                      <div className="wallet">
+                        <div className="wallet-flap"></div>
+                        <div className="wallet-button"></div>
                       </div>
+
+                      <div className="plus">+</div>
                     </div>
-                  );
-                })}
+
+                    <div className="content">
+                      <h2>No Transactions Yet</h2>
+
+                      <p>
+                        You haven't added any transactions.
+                      <br />
+                    Let's get started.
+                      </p>
+
+                      <button>Add Transaction</button>
+                    </div>
+                  </main>
+                ) : (
+                  <>
+                    {filteredTransaction.slice(0, 5).map((transaction) => {
+                      return (
+                        <div className="history">
+                          <div className="img-placeholder"></div>
+                          <div className="history-info">
+                            <p className="day">{transaction.date}</p>
+                            <p>
+                              {transaction.name} {transaction.category} ₦
+                              {transaction.amount.toLocaleString()}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </>
+                )}
               </div>
             </div>
           </div>
